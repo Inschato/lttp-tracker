@@ -69,7 +69,8 @@ var itemsInit = {
     quake: false,
     somaria: false,
     lantern: false,
-    flute: false,
+    fluteshovel:0,
+    flute: false,    
     book: false,
     boots: false,
     flippers: false,
@@ -160,6 +161,7 @@ var itemsMax = {
 
     bottle:4,
     boomerang:3,
+    fluteshovel:3,
     glove:2,
     mpupgrade: 2,
     bomb: 2,

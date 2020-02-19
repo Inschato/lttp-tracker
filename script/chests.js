@@ -56,7 +56,7 @@ function canMeltThings() {
 }
 
 function canFly() {
-    return trackerData.items.flute;
+    return trackerData.items.flute || trackerData.items.fluteshovel == 2 || trackerData.items.fluteshovel == 3;
 }
 
 function canSpinSpeed() {
@@ -3958,7 +3958,7 @@ chests[54] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (trackerData.items.shovel) {
+        if (trackerData.items.shovel || trackerData.items.fluteshovel == 1 || trackerData.items.fluteshovel == 3) {
             availability.glitchless = 'available';
         }
         return availability;
