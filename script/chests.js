@@ -59,6 +59,10 @@ function canFly() {
     return trackerData.items.flute || trackerData.items.fluteshovel == 2 || trackerData.items.fluteshovel == 3;
 }
 
+function canDig() {
+    return trackerData.items.shovel || trackerData.items.fluteshovel == 1 || trackerData.items.fluteshovel == 3;
+}
+
 function canSpinSpeed() {
     return trackerData.items.boots && (trackerData.items.sword >= 1 || trackerData.items.hookshot);
 }
@@ -78,6 +82,15 @@ function canExtendMagic() {
 function glitchedLinkInDarkWorld() {
     return trackerData.items.moonpearl || trackerData.items.bottle >= 1;
 }
+
+function hasMushroom() {
+    return trackerData.items.mushroom || trackerData.items.mushpowder == 1 || trackerData.items.mushpowder == 3;
+}
+
+function hasPowder() {
+    return trackerData.items.powder || trackerData.items.mushpowder == 2 || trackerData.items.mushpowder == 3;
+}
+
 
 function canGoBeatAgahnim1(allowOutOfLogicGlitches) {
     return !trackerData.items.agahnim
@@ -3278,7 +3291,7 @@ chests[35] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (trackerData.items.mushroom) {
+        if (hasMushroom()) {
             availability.glitchless = 'available';
         }
         return availability;
@@ -3958,7 +3971,7 @@ chests[54] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (trackerData.items.shovel || trackerData.items.fluteshovel == 1 || trackerData.items.fluteshovel == 3) {
+        if (canDig()) {
             availability.glitchless = 'available';
         }
         return availability;
@@ -4026,17 +4039,17 @@ chests[59] = {
         const availability = new Availability();
         if (trackerData.items.hammer
                 || (trackerData.items.moonpearl && trackerData.items.mirror && canLiftDarkRocks())) {
-            if (trackerData.items.powder) {
+            if (hasPowder()) {
                 availability.glitchless = 'available';
             }
-            else if (trackerData.items.somaria && trackerData.items.mushroom && !trackerData.chestsopened[witchChest]) {
+            else if (trackerData.items.somaria && hasMushroom() && !trackerData.chestsopened[witchChest]) {
                 availability.glitchless = 'glitchavailable';
             }
         }
-        if (trackerData.items.powder && trackerData.items.boots) {
+        if (hasPowder() && trackerData.items.boots) {
             availability.owGlitches = 'available';
         }
-        else if (trackerData.items.powder && trackerData.items.mirror) {
+        else if (hasPowder() && trackerData.items.mirror) {
             availability.majorGlitches = 'available';
         }
         return availability;
