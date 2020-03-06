@@ -34,7 +34,7 @@ function getCookie() {
     return JSON.parse(str);
 }
 
-var cookiekeys = ['ts', 'map', 'iZoom', 'mZoom', 'mOrien', 'mPos', 'mapLogic', 'openmode', 'chest', 'prize', 'medal', 'label', 'items'];
+var cookiekeys = ['ts', 'map', 'iZoom', 'mZoom', 'mOrien', 'mPos', 'mapLogic', 'openmode', 'chest', 'prize', 'medal', 'label', 'menusprites', 'items'];
 var cookieDefault = {
     ts:94,
     map:1,
@@ -48,6 +48,7 @@ var cookieDefault = {
     prize:1,
     medal:1,
     label:1,
+    menusprites:0,
     items:defaultItemGrid
 };
 
@@ -89,6 +90,9 @@ function setConfigObject(configobj) {
     document.getElementsByName('showmedallion')[0].onchange();
     document.getElementsByName('showlabel')[0].checked = !!configobj.label;
     document.getElementsByName('showlabel')[0].onchange();
+    document.getElementsByName('menusprites')[0].checked = !!configobj.menusprites;
+    document.getElementsByName('menusprites')[0].onchange();
+
 }
 
 function updateConfigFromFirebase(configobj) {
@@ -145,6 +149,7 @@ function getConfigObject() {
     configobj.prize = document.getElementsByName('showcrystal')[0].checked ? 1 : 0;
     configobj.medal = document.getElementsByName('showmedallion')[0].checked ? 1 : 0;
     configobj.label = document.getElementsByName('showlabel')[0].checked ? 1 : 0;
+    configobj.menusprites = document.getElementsByName('menusprites')[0].checked ? 1 : 0;
 
     configobj.items = window.vm.itemRows;
 
@@ -177,6 +182,12 @@ function highlightDungeon(x){
 function unhighlightDungeon(x){
     document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
     document.getElementById("caption").innerHTML = "&nbsp;";
+}
+
+function menuSprites(sender) {
+    trackerOptions.menusprites = sender.checked;
+    updateAll();
+    saveCookie();
 }
 
 function showChest(sender) {
@@ -492,14 +503,16 @@ function populateItemconfig() {
         rowitem.id = key;
         rowitem.style.backgroundSize = '100% 100%';
         rowitem.onclick = new Function('itemConfigClick(this)');
+        
+        path = getItemPathByName(this.trackerOptions, key);
         if((typeof trackerData.items[key]) === "boolean"){
-            rowitem.style.backgroundImage = "url(images/" + key + ".png)";
+            rowitem.style.backgroundImage = "url(images/" + path + ".png)";
         }
         else if(key.indexOf("heart") === 0){
-            rowitem.style.backgroundImage = "url(images/" + key + ".png)";
+            rowitem.style.backgroundImage = "url(images/" + path + ".png)";
         }
         else{
-            rowitem.style.backgroundImage = "url(images/" + key + itemsMax[key] + ".png)";
+            rowitem.style.backgroundImage = "url(images/" + path + itemsMax[key] + ".png)";
         }
         if(key.indexOf("boss") === 0){
             rowitem.innerText = dungeons[key.substring(4)].label;
@@ -555,6 +568,67 @@ function confirmSaveConfigToFirebase() {
     }
 }
 
+menuSpriteItems = {
+    bomb0:0,
+    bomb1:0,
+    bomb2:0,
+    bombos:0,
+    book:0,
+    boomerang:0,
+    boomerang0:0,
+    boomerang1:0,
+    boomerang2:0,
+    boomerang3:0,
+    bottle0:0,
+    bottle1:0,
+    bottle2:0,
+    bottle3:0,
+    bottle4:0,
+    bow:0,
+    byrna:0,
+    cape:0,
+    ether:0,
+    firerod:0,
+    flute:0,
+    fluteshovel:0,
+    fluteshovel0:0,
+    fluteshovel1:0,
+    fluteshovel2:0,
+    fluteshovel3:0,
+    hammer:0,
+    hookshot:0,
+    icerod:0,
+    lantern:0,
+    mirror:0,
+    mushpowder:0,
+    mushpowder0:0,
+    mushpowder1:0,
+    mushpowder2:0,
+    mushpowder3:0,
+    mushroom:0,
+    net:0,
+    powder:0,
+    quake:0,
+    shovel:0,
+    silvers:0,
+    somaria:0,
+    sword:0,
+    sword0:0,
+    sword1:0,
+    sword2:0,
+    sword3:0,
+    sword4:0
+
+ };
+function getItemPathByName(trackerOptions, name) {
+    if (trackerOptions && trackerOptions.menusprites) {
+        if (menuSpriteItems.hasOwnProperty(name)) {
+        return "menusprites/" + name;
+        }
+    }
+    return name;
+}
+
 Vue.component('tracker-table', {
   template: '#tracker-table',
   props: [
@@ -589,6 +663,8 @@ Vue.component('tracker-table', {
   }
 });
 
+
+
 Vue.component('tracker-cell', {
   template: '#tracker-cell',
   props: [
@@ -617,16 +693,18 @@ Vue.component('tracker-cell', {
       return null;
     },
     backgroundImage: function() {
+      itempath = getItemPathByName(this.trackerOptions, this.itemName);
+      
       if(this.itemName === 'blank') {
         return this.trackerOptions.editmode ? 'url(images/blank.png)' :'none';
       }
       else if((typeof this.itemValue) === "boolean") {
-        return 'url(images/' + this.itemName + '.png)';
+        return 'url(images/' + itempath + '.png)';
       }
       else if(this.textCounter !== null) {
-        return 'url(images/' + this.itemName + '.png)';
+        return 'url(images/' + itempath + '.png)';
       }
-      return 'url(images/' + this.itemName + (this.trackerOptions.editmode ? itemsMax[this.itemName] : (this.itemValue || '0')) + '.png)';
+      return 'url(images/' + itempath + (this.trackerOptions.editmode ? itemsMax[this.itemName] : (this.itemValue || '0')) + '.png)';
     },
     isActive: function() {
       return this.trackerOptions.editmode || this.itemValue;
