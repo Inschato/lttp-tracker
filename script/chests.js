@@ -264,7 +264,7 @@ dungeons[0] = {
     isBeatable: function() {
         const availability = new Availability();
         if (trackerData.items.bow) {
-            if (trackerData.items.lantern) {
+            if (canLightTorches()) {
                 availability.glitchless = 'available';
             }
             else {
@@ -3985,7 +3985,7 @@ chests[55] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (!trackerOptions.openmode || trackerData.items.lantern || canLiftRocks()) {
+        if (!trackerOptions.openmode || canLightTorches() || canLiftRocks()) {
             availability.glitchless = 'available';
         } else {
             availability.glitchless = 'unavailable';
@@ -4218,10 +4218,10 @@ chests[64] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (!trackerOptions.openmode || trackerData.items.lantern) {
+        if (!trackerOptions.openmode || canLightTorches()) {
             availability.glitchless = 'available';
         } else {
-            availability.glitchless = 'unavailable';
+            availability.glitchless = 'glitchavailable';
         }        
         return availability;
     }
