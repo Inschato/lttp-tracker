@@ -3985,10 +3985,10 @@ chests[55] = {
     isOpened: false,
     isAvailable: function () {
         const availability = new Availability();
-        if (!trackerOptions.openmode || canLightTorches() || canLiftRocks()) {
+        if (!trackerOptions.openmode || trackerData.items.lantern || canLiftRocks()) {
             availability.glitchless = 'available';
         } else {
-            availability.glitchless = 'unavailable';
+            availability.glitchless = 'glitchavailable';
         }        
         return availability;
     }
