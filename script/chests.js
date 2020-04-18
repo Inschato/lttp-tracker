@@ -2309,7 +2309,7 @@ chests[0] = {
 };
 
 chests[1] = {
-    name: "Light World Swamp (2)",
+    name: "Floodgate Chest / Sunken Treasure (2)",
     x: "23.4%",
     y: "93.4%",
     isOpened: false,
@@ -2427,7 +2427,7 @@ chests[6] = {
 };
 
 chests[7] = {
-    name: "Bombable Hut <img src='images/bomb.png' class='mini'>",
+    name: "Brewery <img src='images/bomb.png' class='mini'>",
     x: "55.4%",
     y: "57.8%",
     isOpened: false,
@@ -2469,7 +2469,7 @@ chests[7] = {
 };
 
 chests[8] = {
-    name: "C House",
+    name: "C-Shaped House",
     x: "60.8%",
     y: "47.9%",
     isOpened: false,
@@ -2519,7 +2519,7 @@ chests[9] = {
 };
 
 chests[10] = {
-    name: "West of Mire (2)",
+    name: "Mire Shed (2)",
     x: "51.7%",
     y: "79.5%",
     isOpened: false,
@@ -2558,7 +2558,7 @@ chests[10] = {
 };
 
 chests[11] = {
-    name: "DW Death Mountain (2) : Don't need <img src='images/moonpearl.png' class='mini'>",
+    name: "Superbunny Cave (2) : Don't need <img src='images/moonpearl.png' class='mini'>",
     x: "92.8%",
     y: "14.7%",
     isOpened: false,
@@ -2601,7 +2601,7 @@ chests[12] = {
 };
 
 chests[13] = {
-    name: "Byrna Spike Cave",
+    name: "Spike Cave",
     x: "78.6%",
     y: "14.9%",
     isOpened: false,
@@ -2659,7 +2659,7 @@ chests[14] = {
 };
 
 chests[15] = {
-    name: "Thieves' Hut (4 + <img src='images/bomb.png' class='mini'>)",
+    name: "Blind's Hideout (4 + <img src='images/bomb.png' class='mini'>)",
     x: "6.4%",
     y: "41.0%",
     isOpened: false,
@@ -2671,7 +2671,7 @@ chests[15] = {
 };
 
 chests[16] = {
-    name: "Hype Cave! <img src='images/bomb.png' class='mini'> (NPC + 4 <img src='images/bomb.png' class='mini'>)",
+    name: "Hype Cave <img src='images/bomb.png' class='mini'> (NPC + 4 <img src='images/bomb.png' class='mini'>)",
     x: "80.0%",
     y: "77.1%",
     isOpened: false,
@@ -2713,7 +2713,7 @@ chests[16] = {
 };
 
 chests[17] = {
-    name: "Death Mountain East (5 + 2 <img src='images/bomb.png' class='mini'>)",
+    name: "Paradox Cave (5 + 2 <img src='images/bomb.png' class='mini'>)",
     x: "41.4%",
     y: "17.1%",
     isOpened: false,
@@ -2742,7 +2742,7 @@ chests[17] = {
 };
 
 chests[18] = {
-    name: "West of Sanctuary <img src='images/boots.png' class='mini'>",
+    name: "Pegasus Rocks <img src='images/boots.png' class='mini'>",
     x: "19.5%",
     y: "29.3%",
     isOpened: false,
@@ -2756,7 +2756,7 @@ chests[18] = {
 };
 
 chests[19] = {
-    name: "Minimoldorm Cave (NPC + 4) <img src='images/bomb.png' class='mini'>",
+    name: "Mini Moldorm Cave (NPC + 4) <img src='images/bomb.png' class='mini'>",
     x: "32.6%",
     y: "93.4%",
     isOpened: false,
@@ -2780,7 +2780,7 @@ chests[20] = {
 };
 
 chests[21] = {
-    name: "Cave Under Rock (bottom chest) <img src='images/hookshot.png' class='mini'>/<img src='images/boots.png' class='mini'>",
+    name: "Hookshot Cave (bottom chest) <img src='images/hookshot.png' class='mini'>/<img src='images/boots.png' class='mini'>",
     x: "91.6%",
     y: "8.6%",
     isOpened: false,
@@ -2814,7 +2814,7 @@ chests[21] = {
 };
 
 chests[22] = {
-    name: "Cave Under Rock (3 top chests) <img src='images/hookshot.png' class='mini'>",
+    name: "Hookshot Cave (3 top chests) <img src='images/hookshot.png' class='mini'>",
     x: "91.6%",
     y: "3.4%",
     isOpened: false,
@@ -2847,7 +2847,7 @@ chests[22] = {
 };
 
 chests[23] = {
-    name: "Treasure Chest Minigame: Pay 30 rupees",
+    name: "Chest Game: Pay 30 rupees",
     x: "52.1%",
     y: "46.4%",
     isOpened: false,
@@ -2885,7 +2885,7 @@ chests[23] = {
 };
 
 chests[24] = {
-    name: "Bottle Vendor: Pay 100 rupees",
+    name: "Bottle Merchant: Pay 100 rupees",
     x: "4.5%",
     y: "46.8%",
     isOpened: false,
@@ -2914,7 +2914,7 @@ chests[25] = {
 };
 
 chests[26] = {
-    name: "Stump Kid",
+    name: "Stumpy",
     x: "65.5%",
     y: "68.6%",
     isOpened: false,
@@ -2956,7 +2956,7 @@ chests[26] = {
 };
 
 chests[27] = {
-    name: "Bug Kid <img src='images/bottle0.png' class='mini'>",
+    name: "Sick Kid <img src='images/bottle0.png' class='mini'>",
     x: "7.8%",
     y: "52.1%",
     isOpened: false,
@@ -2970,7 +2970,7 @@ chests[27] = {
 };
 
 chests[28] = {
-    name: "Show the Purple Chest to Gary",
+    name: "Purple Chest",
     x: "65.2%",
     y: "52.2%",
     isOpened: false,
@@ -3030,7 +3030,7 @@ chests[28] = {
 };
 
 chests[29] = {
-    name: "Fugitive under the bridge <img src='images/flippers.png' class='mini'>",
+    name: "Hobo <img src='images/flippers.png' class='mini'>",
     x: "35.4%",
     y: "69.7%",
     isOpened: false,
@@ -3249,7 +3249,7 @@ chests[33] = {
 };
 
 chests[34] = {
-    name: "Lost Old Man",
+    name: "Old Man",
     x: "20.8%",
     y: "20.4%",
     isOpened: false,
@@ -3285,7 +3285,7 @@ chests[34] = {
 
 witchChest = 35; //used for fake powder logic (you lose mushroom at witch)
 chests[35] = {
-    name: "Witch: Give her <img src='images/mushroom.png' class='mini'>",
+    name: "Potion Shop: Give her <img src='images/mushroom.png' class='mini'>",
     x: "40.8%",
     y: "32.5%",
     isOpened: false,
@@ -3299,7 +3299,7 @@ chests[35] = {
 };
 
 chests[36] = {
-    name: "Forest Hideout",
+    name: "Lost Woods Hideout",
     x: "9.4%",
     y: "13.0%",
     isOpened: false,
@@ -3363,7 +3363,7 @@ chests[38] = {
 };
 
 chests[39] = {
-    name: "South of Grove <img src='images/mirror.png' class='mini'>",
+    name: "Cave 45 <img src='images/mirror.png' class='mini'>",
     x: "14.1%",
     y: "84.1%",
     isOpened: false,
@@ -3410,7 +3410,7 @@ chests[39] = {
 };
 
 chests[40] = {
-    name: "Graveyard Cliff Cave <img src='images/mirror.png' class='mini'>",
+    name: "Graveyard Cave <img src='images/mirror.png' class='mini'>",
     x: "28.1%",
     y: "27.0%",
     isOpened: false,
@@ -3490,7 +3490,7 @@ chests[41] = {
 };
 
 chests[42] = {
-    name: "<img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'><img src='images/hammer.png' class='mini'>!!!!!!!!",
+    name: "Peg Cave <img src='images/hammer.png' class='mini'>",
     x: "65.8%",
     y: "60.1%",
     isOpened: false,
@@ -3704,7 +3704,7 @@ chests[46] = {
 };
 
 chests[47] = {
-    name: "Race Minigame <img src='images/bomb.png' class='mini'>/<img src='images/boots.png' class='mini'>",
+    name: "Maze Race <img src='images/bomb.png' class='mini'>/<img src='images/boots.png' class='mini'>",
     x: "1.8%",
     y: "69.8%",
     isOpened: false,
@@ -3716,7 +3716,7 @@ chests[47] = {
 };
 
 chests[48] = {
-    name: "Desert West Ledge <img src='images/book.png' class='mini'>/<img src='images/mirror.png' class='mini'>",
+    name: "Desert Ledge <img src='images/book.png' class='mini'>/<img src='images/mirror.png' class='mini'>",
     x: "1.5%",
     y: "91.0%",
     isOpened: false,
@@ -3802,7 +3802,7 @@ chests[49] = {
 };
 
 chests[50] = {
-    name: "Bumper Cave <img src='images/cape.png' class='mini'>",
+    name: "Bumper Cave Ledge <img src='images/cape.png' class='mini'>",
     x: "67.1%",
     y: "15.2%",
     isOpened: false,
@@ -3897,7 +3897,7 @@ chests[51] = {
 };
 
 chests[52] = {
-    name: "Dig Game: Pay 80 rupees",
+    name: "Digging Game: Pay 80 rupees",
     x: "52.9%",
     y: "69.2%",
     isOpened: false,
@@ -3939,7 +3939,7 @@ chests[52] = {
 };
 
 chests[53] = {
-    name: "Zora River Ledge <img src='images/flippers.png' class='mini'>",
+    name: "Zora's Ledge <img src='images/flippers.png' class='mini'>",
     x: "47.5%",
     y: "17.3%",
     isOpened: false,
@@ -3965,7 +3965,7 @@ chests[53] = {
 };
 
 chests[54] = {
-    name: "Buried Item <img src='images/shovel.png' class='mini'>",
+    name: "Flute Spot <img src='images/shovel.png' class='mini'>",
     x: "14.4%",
     y: "66.2%",
     isOpened: false,
@@ -3979,7 +3979,7 @@ chests[54] = {
 };
 
 chests[55] = {
-    name: "Sewer Cracked Wall (3) <img src='images/bomb.png' class='mini'>/<img src='images/boots.png' class='mini'>",
+    name: "Sewers - Secret Room (3) <img src='images/bomb.png' class='mini'>/<img src='images/boots.png' class='mini'>",
     x: "26.8%",
     y: "32.4%",
     isOpened: false,
@@ -3995,7 +3995,7 @@ chests[55] = {
 };
 
 chests[56] = {
-    name: "Castle Secret Entrance (2)",
+    name: "Link's Uncle / Secret Passage (2)",
     x: "29.8%",
     y: "41.8%",
     isOpened: false,
@@ -4031,7 +4031,7 @@ chests[58] = {
 };
 
 chests[59] = {
-    name: "Mad Batter <img src='images/hammer.png' class='mini'>/<img src='images/mirror.png' class='mini'> + <img src='images/powder.png' class='mini'>",
+    name: "Magic Bat <img src='images/hammer.png' class='mini'>/<img src='images/mirror.png' class='mini'> + <img src='images/powder.png' class='mini'>",
     x: "16.0%",
     y: "58.0%",
     isOpened: false,
@@ -4057,7 +4057,7 @@ chests[59] = {
 };
 
 chests[60] = {
-    name: "Take the frog home (<img src='images/mirror.png' class='mini'> or save and quit)",
+    name: "Missing Smith (<img src='images/mirror.png' class='mini'> or save and quit)",
     x: "15.2%",
     y: "51.8%",
     isOpened: false,
@@ -4101,7 +4101,7 @@ chests[60] = {
 };
 
 chests[61] = {
-    name: "Fat Fairy: Buy OJ bomb from Dark Link's House after <img src='images/crystal0.png' class='mini'>5 <img src='images/crystal0.png' class='mini'>6 (2 items)",
+    name: "Pyramid Fairy: Buy red bomb from Dark Link's House after <img src='images/crystal0.png' class='mini'>5 <img src='images/crystal0.png' class='mini'>6 (2 items)",
     x: "73.5%",
     y: "48.5%",
     isOpened: false,
@@ -4191,7 +4191,7 @@ chests[62] = {
 };
 
 chests[63] = {
-    name: "Waterfall of the Wishing (2)  <img src='images/flippers.png' class='mini'>",
+    name: "Waterfall Fairy (2)  <img src='images/flippers.png' class='mini'>",
     x: "44.9%",
     y: "14.7%",
     isOpened: false,
@@ -4212,7 +4212,7 @@ chests[63] = {
 };
 
 chests[64] = {
-    name: "Sewer Dark Cross",
+    name: "Sewers - Dark Cross",
     x: "26.8%",
     y: "38%",
     isOpened: false,
