@@ -133,6 +133,8 @@ var itemsMin = {
 
     bottle:0,
     boomerang:0,
+    fluteshovel:0,
+    mushpowder:0,
     glove:0,
     mpupgrade: 0,
     bomb: 0,
