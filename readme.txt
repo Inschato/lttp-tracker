@@ -4,7 +4,7 @@ by crossproduct (twitch.tv/crossproduct)
 2017/04/07
                                             ^
                                             |
-                   /\    ¯¯¯||¯¯¯ |   |¯- |¯|¯|    /\
+                   /\    ï¿½ï¿½ï¿½||ï¿½ï¿½ï¿½ |   |ï¿½- |ï¿½|ï¿½|    /\
                   /__\     / |__  |   |  \|_|_|   /__\
                  /\  /\   /  |    |   |  /| | |  /\  /\
                 /__\/__\ |__ |___ |___|_- | | | /__\/__\
@@ -190,7 +190,7 @@ Small squares are chests and Heart Piece locations strewn about the land of Hyru
     - Green areas are attainable with your current items (the logic assumes you have access to bombs)
     - Red areas are unreachable.
     - Yellow areas are unreachable, but you can see what item is there!
-	- The "Mimic Cave" location is the exception. Yellow means the item is POSSIBLE,
+	- The "Mimic Cave" location is the exception. Yellow means the item is visible,
 		given the correct medallion requirement and key layout of Turtle Rock.
     - Gray areas have already been searched. (The chests between Link's house and Sanctuary
 	    start off as Gray by default.)

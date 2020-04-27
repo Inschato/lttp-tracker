@@ -216,7 +216,7 @@ label {
     color: rgb(0,0,0);
 }
 
-.possible{
+.visible{
     background-color: rgb(255,255,0);
     color: rgb(0,0,0);
 }
@@ -235,7 +235,7 @@ label {
     background-color: rgb(0,127,0);
 }
 
-.glitchpossible{
+.glitchvisible{
     background-color: rgb(192,192,0);
 }
 
