@@ -68,12 +68,6 @@ a {
     box-sizing: border-box;
 }
 
-.stoops{
-    width: 128px;
-    height: 128px;
-    background-size: 200% 200%;
-}
-
 input {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -92,13 +86,6 @@ label {
     padding-top: 5px;
     text-align: right;
     width: 140px;
-}
-
-.lonk{
-    width: 64px;
-    height: 64px;
-    border-spacing: 0;
-    border: 0;
 }
 
 .corner{
