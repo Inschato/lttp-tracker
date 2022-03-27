@@ -229,7 +229,7 @@ function setZoom(target, sender) {
 
     document.getElementById(target + 'size').innerHTML = (sender.value) + '%';
     var offset = -442 * (100 - sender.value) / 100.0;
-    document.getElementById("caption").style.top = offset;
+    //document.getElementById("caption").style.top = offset;
     saveCookie();
 }
 
