@@ -1,11 +1,19 @@
-* {
-    box-sizing: border-box;
-}
+body {
+    --itemScale: 1.0;
+    --itemSize: calc(64px * var(--itemScale));
+    --itemHalfSize: calc(var(--itemSize) / 2);
+    
+    --mapScale: 1.0;
+    --mapMiniSize: calc(16px * var(--mapScale));
 
-body{
     background-color: rgb(0,0,0);
     margin: 0;
     color: white;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -42,10 +50,20 @@ label {
     top: 100%;
     left: 20px;
     text-align: left;
+    font-size: calc(100% * var(--mapScale));
 }
 
-.flexcontainer {
+.flex {
     display: flex;
+}
+
+.below-layout {    
+    flex-direction: column;
+    align-items: first baseline;
+}
+
+.side-layout {
+    flex-direction: row;
 }
 
 .settings{
@@ -68,40 +86,18 @@ label {
     color: red;
 }
 
-.tracker{
-    background-color: rgb(0,0,0);
-    position: relative;
-    left: 0;
-    top: 0;
-    empty-cells: show;
-    border-spacing: 0;
-    border: 0;
-}
-
-.tracker td{
-    width: 64px;
-    height: 64px;
-    padding: 0;
-    background-repeat: no-repeat;
-}
-
-.tracker .halfcell {
-    width: 32px;
-    height: 64px;
-}
-
 .itemconfig {
     border-spacing: 0;
     border: 1px solid white;
 }
 
 .corner{
-    width: 32px;
-    height: 32px;
+    width: calc(32px * var(--itemScale));
+    height: calc(32px * var(--itemScale));
     color: lightgray;
-    font: 26px 'VT323', monospace;
+    font: calc(26px * var(--itemScale)) 'VT323', monospace;
     cursor: default;
-    text-shadow: 0 0 3px black;
+    text-shadow: 0 0 calc(3px * var(--itemScale)) black;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -114,15 +110,15 @@ label {
 }
 
 .textCounter {
-    display: block;
-    position: absolute;
     right: 0;
     bottom: 0;
-    font: 40px 'VT323', monospace;
+    font: calc(40px * var(--itemScale)) 'VT323', monospace;
     cursor: default;
     color: #fdd549;
     user-select: none;
-    text-shadow: -2px -2px 1px black;
+    text-align: center;
+    text-shadow: calc(-2px * var(--itemScale)) calc(-2px * var(--itemScale)) calc(1px * var(--itemScale)) black;
+    margin-bottom: calc(10px * var(--itemScale));    
 }
 
 .true{
@@ -133,27 +129,26 @@ label {
     opacity: 0.25;
 }
 
-.mini{
-    width: 16px;
-    height: 16px;
+.mini {
+    width: var(--mapMiniSize);
+    height: var(--mapMiniSize);
     vertical-align: text-bottom;
 }
 
-.boss{
-    width: 24px;
-    height: 24px;
+.boss {
+    width: calc(24px * var(--mapScale));
+    height: calc(24px * var(--mapScale));
 
     background: no-repeat center;
-    background-size: 75% 75%;
+    background-size: 75%;
 
     z-index: 2;
 }
 
-.dungeon{
-    width: 48px;
-    height: 48px;
-    background-size: 100% 100%;
-    border: 6px solid #202020;
+.dungeon {
+    width: calc(48px * var(--mapScale));
+    height: calc(48px * var(--mapScale));
+    border: calc(6px * var(--mapScale)) solid #202020;
 }
 
 .itemdiv{
@@ -162,33 +157,32 @@ label {
     left: 0;
 }
 
-.mapdiv{
-    background-size: 100% 100%;
-    background: url("images/map.png") no-repeat;
+#mapdiv {
+    background-size: cover;
+    background-repeat: no-repeat;
     transform-origin: top left;
-
     position: relative;
-    width: 884px;
-    height: 442px;
     left: 0;
+    flex-shrink: 0;
 }
 
-.mapvdiv{
-    background-size: cover;
-    background: url("images/mapv.png") no-repeat;
-    transform-origin: top left;
+.mapdiv {
+    background-image: url("images/map.png");
+    width: calc(884px * var(--mapScale));
+    height: calc(442px * var(--mapScale));
+}
 
-    position: relative;
-    width: 438px;
-    height: 888px;
-    left: 0;
+.mapvdiv {
+    background-image: url("images/mapv.png");
+    width: calc(438px * var(--mapScale));
+    height: calc(888px * var(--mapScale));
 }
 
 .chest{
-    width: 24px;
-    height: 24px;
+    width: calc(24px * var(--mapScale));
+    height: calc(24px * var(--mapScale));
     background-size: 100% 100%;
-    border: 3px solid #202020;
+    border: calc(3px * var(--mapScale)) solid #202020;
 }
 
 .unavailable{
@@ -251,4 +245,44 @@ label {
 
 .mapspan:hover {
     border-color: #fff200;
+}
+
+.item-row {
+    display: flex;
+    justify-content: center;
+}
+
+.vueTrackerTable {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+.item-cell {
+    background-size: cover;
+    height: calc(var(--itemHalfSize) * 2);
+    width: var(--itemSize);
+    display: inline-block;
+    position: relative;
+}
+
+.item-cell > span {
+    display: block;
+    position: absolute;
+    height: var(--itemHalfSize);
+    width: var(--itemHalfSize);
+    background-size: cover;
+}
+
+.item-chest {
+    top: var(--itemHalfSize);
+}
+
+.item-prize {
+    top: var(--itemHalfSize);
+    left: var(--itemHalfSize);
+}
+
+.item-medallion {
+    left: var(--itemHalfSize);
 }

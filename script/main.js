@@ -1,3 +1,4 @@
+const CONFIG_KEY = "lttp_tracker_config";
 
 var trackerOptions = {
   showchests: true,
@@ -24,12 +25,12 @@ var trackerData = {
   chestsopened: chestsopenedInit
 };
 
-function setCookie(obj) {
-    window.localStorage.setItem(roomid, JSON.stringify(obj));
+function saveConfig(obj) {
+    window.localStorage.setItem(CONFIG_KEY, JSON.stringify(obj));
 }
 
-function getCookie() {
-    var str = window.localStorage.getItem(roomid);
+function loadConfig() {
+    var str = window.localStorage.getItem(CONFIG_KEY);
     if(!str) return {};
     return JSON.parse(str);
 }
@@ -63,18 +64,14 @@ function loadCookie() {
 }
 
 function setConfigObject(configobj) {
-    //initGridRow(JSON.parse(JSON.stringify(configobj.items)));
-    //while(itemLayout.length > 0) {itemLayout.length.pop();}
-    //itemLayout = configobj.items;
-    //Array.prototype.push.apply(itemLayout, configobj.items);
     window.vm.itemRows = configobj.items;
 
     document.getElementsByName('showmap')[0].checked = !!configobj.map;
     document.getElementsByName('showmap')[0].onchange();
     document.getElementsByName('itemdivsize')[0].value = configobj.iZoom;
-    document.getElementsByName('itemdivsize')[0].onchange();
+    document.getElementsByName('itemdivsize')[0].oninput();
     document.getElementsByName('mapdivsize')[0].value = configobj.mZoom;
-    document.getElementsByName('mapdivsize')[0].onchange();
+    document.getElementsByName('mapdivsize')[0].oninput();
 
     document.getElementsByName('maporientation')[configobj.mOrien].click();
     document.getElementsByName('mapposition')[configobj.mPos].click();
@@ -92,37 +89,21 @@ function setConfigObject(configobj) {
     document.getElementsByName('showlabel')[0].onchange();
     document.getElementsByName('menusprites')[0].checked = !!configobj.menusprites;
     document.getElementsByName('menusprites')[0].onchange();
-
 }
 
-function updateConfigFromFirebase(configobj) {
-    var existingConfig = getConfigObjectFromCookie();
-    if(!existingConfig || !existingConfig.ts || existingConfig.ts < configobj.ts) {
-        console.log("Overwriting config with Firebase values");
-        setConfigObject(configobj);
-        saveCookie();
-    }
-    else {
-        console.log("Ignoring Firebase config values due to older timestamp");
-    }
-}
-
-function saveConfigToFirebase() {
-}
-
-function saveCookie() {
+function saveConfig() {
     if (cookielock)
         return;
     cookielock = true;
 
     cookieobj = getConfigObject();
-    setCookie(cookieobj);
+    saveConfig(cookieobj);
 
     cookielock = false;
 }
 
 function getConfigObjectFromCookie() {
-    configobj = getCookie();
+    configobj = loadConfig();
 
     cookiekeys.forEach(function (key) {
         if (configobj[key] === undefined) {
@@ -156,6 +137,10 @@ function getConfigObject() {
     return configobj;
 }
 
+function init(callback) {
+    callback();
+}
+
 // Event of clicking a chest on the map
 function toggleChest(x){
     trackerData.chestsopened[x] = !trackerData.chestsopened[x];
@@ -183,50 +168,52 @@ function unhighlightDungeon(x){
 function menuSprites(sender) {
     trackerOptions.menusprites = sender.checked;
     updateAll();
-    saveCookie();
+    saveConfig();
 }
 
 function showChest(sender) {
     trackerOptions.showchests = sender.checked;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function showCrystal(sender) {
     trackerOptions.showprizes = sender.checked;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function showMedallion(sender) {
     trackerOptions.showmedals = sender.checked;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function showLabel(sender) {
     trackerOptions.showlabels = sender.checked;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function setOrder(H) {
     if (H) {
-        document.getElementById('layoutdiv').classList.remove('flexcontainer');
-    } 
-    else {
-        document.getElementById('layoutdiv').classList.add('flexcontainer');
+        document.getElementById('layoutdiv').classList.add('below-layout');
+        document.getElementById('layoutdiv').classList.remove('side-layout');        
+    } else {
+        document.getElementById('layoutdiv').classList.add('side-layout');
+        document.getElementById('layoutdiv').classList.remove('below-layout');
     }
-    saveCookie();
+    saveConfig();
 }
 
 function setZoom(target, sender) {
-    document.getElementById(target).style.transform = "scale(" + sender.value / 100 + ")";
-
-    document.getElementById(target + 'size').innerHTML = (sender.value) + '%';
-    var offset = -442 * (100 - sender.value) / 100.0;
-    //document.getElementById("caption").style.top = offset;
-    saveCookie();
+    if (target === 'itemdiv') {
+        document.body.style.setProperty("--itemScale", sender.value / 100);
+    } else if (target === 'mapdiv') {
+        document.body.style.setProperty("--mapScale", sender.value / 100);
+    }
+    document.getElementById(target + 'size').innerHTML = (sender.value) + '%';    
+    saveConfig();
 }
 
 var prevH = false;
@@ -236,8 +223,7 @@ function setMapOrientation(H) {
     }
     prevH = H;
 
-
-    var chest = document.getElementsByClassName("mapspan");
+    var chest = document.getElementsByClassName("map-anchor");
     var i;
 
     if (H) {
@@ -274,19 +260,19 @@ function setMapOrientation(H) {
             }
         }
     }
-    saveCookie();
+    saveConfig();
 }
 
 function setOpenMode(sender) {
     trackerOptions.openmode = sender.checked;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function setLogic(logic) {
     trackerOptions.mapLogic = logic;
     refreshMap();
-    saveCookie();
+    saveConfig();
 }
 
 function showSettings(sender) {
@@ -300,7 +286,7 @@ function showSettings(sender) {
         document.getElementById('itemconfig').style.display = 'none';
 
         sender.innerHTML = '🔧';
-        saveCookie();
+        saveConfig();
     } else {
         var x = document.getElementById("settings");
         if (!x.style.display || x.style.display === 'none') {
