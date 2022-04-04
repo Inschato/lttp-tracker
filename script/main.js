@@ -8,7 +8,8 @@ var trackerOptions = {
   mapLogic: 'glitchless',
   openmode: false,
   editmode: false,
-  selected: {}
+  selected: {},
+  menusprites: false
 };
 
 var chestsopenedInit = [];
