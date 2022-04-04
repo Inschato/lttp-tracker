@@ -26,10 +26,6 @@ var trackerData = {
   chestsopened: chestsopenedInit
 };
 
-function saveConfig(obj) {
-    window.localStorage.setItem(CONFIG_KEY, JSON.stringify(obj));
-}
-
 function loadConfig() {
     var str = window.localStorage.getItem(CONFIG_KEY);
     if(!str) return {};
@@ -93,14 +89,8 @@ function setConfigObject(configobj) {
 }
 
 function saveConfig() {
-    if (cookielock)
-        return;
-    cookielock = true;
-
-    cookieobj = getConfigObject();
-    saveConfig(cookieobj);
-
-    cookielock = false;
+    const config = getConfigObject();
+    window.localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
 }
 
 function getConfigObjectFromCookie() {
