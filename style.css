@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 
 body{
     background-color: rgb(0,0,0);
@@ -9,12 +12,36 @@ a {
     color: rgb(128,128,255);
 }
 
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display:inline-block;
+    vertical-align:middle;
+    margin-left:20px
+}
+
+label {
+    float: left;
+    padding-top: 5px;
+    text-align: right;
+    width: 140px;
+}
+
 #legend {
     float: right;
 }
 
-#layoutdiv {
-    height:100%
+#credits {
+    text-align: center;
+    color:grey;
+    width:300px;
+}
+
+#caption {
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    text-align: left;
 }
 
 .flexcontainer {
@@ -68,30 +95,6 @@ a {
     border: 1px solid white;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-input {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    display:inline-block;
-    *display: inline;     /* for IE7*/
-    zoom:1;              /* for IE7*/
-    vertical-align:middle;
-    margin-left:20px
-}
-
-label {
-    display:inline-block;
-    *display: inline;     /* for IE7*/
-    zoom:1;              /* for IE7*/
-    float: left;
-    padding-top: 5px;
-    text-align: right;
-    width: 140px;
-}
-
 .corner{
     width: 32px;
     height: 32px;
@@ -143,10 +146,6 @@ label {
     background: no-repeat center;
     background-size: 75% 75%;
 
-    position: absolute;
-    margin-left: -12px;
-    margin-top: -12px;
-
     z-index: 2;
 }
 
@@ -154,10 +153,7 @@ label {
     width: 48px;
     height: 48px;
     background-size: 100% 100%;
-
-    position: absolute;
-    margin-left: -24px;
-    margin-top: -24px;
+    border: 6px solid #202020;
 }
 
 .itemdiv{
@@ -192,10 +188,7 @@ label {
     width: 24px;
     height: 24px;
     background-size: 100% 100%;
-
-    position: absolute;
-    margin-left: -12px;
-    margin-top: -12px;
+    border: 3px solid #202020;
 }
 
 .unavailable{
@@ -243,16 +236,19 @@ label {
     background-color: rgb(127,127,127);
 }
 
-#credits {
-    text-align: center;
-    color:grey;
-    width:300px;
+.map-anchor {
+    position: absolute;
+    background-color: #202020;
 }
 
-#caption {
+.mapspan {
     position: absolute;
-    top: 100%;
-    left: 20px;
-    text-align: left;
-    zoom: 200%
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mapspan:hover {
+    border-color: #fff200;
 }

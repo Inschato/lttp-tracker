@@ -164,23 +164,19 @@ function toggleChest(x){
 
 // Highlights a chest location and shows the name as caption
 function highlight(x){
-    document.getElementById(x).style.backgroundImage = "url(images/highlighted.png)";
     document.getElementById("caption").innerHTML = chests[x].name;
 }
 
 function unhighlight(x){
-    document.getElementById(x).style.backgroundImage = "url(images/poi.png)";
     document.getElementById("caption").innerHTML = "&nbsp;";
 }
 
 // Highlights a chest location and shows the name as caption (but for dungeons)
 function highlightDungeon(x){
-    document.getElementById("dungeon"+x).style.backgroundImage = "url(images/highlighted.png)";
     document.getElementById("caption").innerHTML = dungeons[x].name;
 }
 
 function unhighlightDungeon(x){
-    document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
     document.getElementById("caption").innerHTML = "&nbsp;";
 }
 
@@ -347,9 +343,9 @@ function refreshMapMedallions() {
 function refreshMapMedallion(d) {
     // Update availability of dungeon boss AND chests
     if(trackerData.dungeonbeaten[d])
-        document.getElementById("bossMap"+d).className = "mapspan boss opened";
+        document.getElementById("bossMap"+d).className = "boss opened";
     else
-        document.getElementById("bossMap"+d).className = "mapspan boss " + dungeons[d].isBeatable().getClassName();
+        document.getElementById("bossMap"+d).className = "boss " + dungeons[d].isBeatable().getClassName();
 
     if(trackerData.dungeonchests[d] > 0)
         document.getElementById("dungeon"+d).className = "mapspan 1dungeon " + dungeons[d].canGetChest().getClassName();
@@ -381,9 +377,9 @@ function refreshMap() {
 
   for(k=0; k<dungeons.length; k++){
       if(trackerData.dungeonbeaten[k])
-          document.getElementById("bossMap"+k).className = "mapspan boss opened";
+          document.getElementById("bossMap"+k).className = "boss opened";
       else
-          document.getElementById("bossMap"+k).className = "mapspan boss " + dungeons[k].isBeatable().getClassName();
+          document.getElementById("bossMap"+k).className = "boss " + dungeons[k].isBeatable().getClassName();
       if(trackerData.dungeonchests[k])
           document.getElementById("dungeon"+k).className = "mapspan dungeon " + dungeons[k].canGetChest().getClassName();
       else
@@ -444,43 +440,45 @@ function populateMapdiv() {
 
     // Initialize all chests on the map
     for(k=0; k<chests.length; k++){
+        var div = document.createElement('div');
         var s = document.createElement('span');
-        s.style.backgroundImage = 'url(images/poi.png)';
         s.style.color = 'black';
         s.id = k;
         s.onclick = new Function('toggleChest('+k+')');
         s.onmouseover = new Function('highlight('+k+')');
         s.onmouseout = new Function('unhighlight('+k+')');
-        s.style.left = chests[k].x;
-        s.style.top = chests[k].y;
+        div.style.left = chests[k].x;
+        div.style.top = chests[k].y;
         if(trackerData.chestsopened[k])
             s.className = "mapspan chest opened";
         else
             s.className = "mapspan chest " + chests[k].isAvailable().getClassName();
-        mapdiv.appendChild(s);
+        div.className = "map-anchor";
+        div.appendChild(s);
+        mapdiv.appendChild(div);
     }
 
     // Dungeon bosses & chests
     for(k=0; k<dungeons.length; k++){
+        var div = document.createElement('div');
+        div.className = "map-anchor";
+        
         var s = document.createElement('span');
-        s.style.backgroundImage = 'url(images/' + dungeons[k].image + ')';
-        s.id = 'bossMap' + k;
-        s.onmouseover = new Function('highlightDungeon('+k+')');
-        s.onmouseout = new Function('unhighlightDungeon('+k+')');
-        s.style.left = dungeons[k].x;
-        s.style.top = dungeons[k].y;
-        s.className = "mapspan boss " + dungeons[k].isBeatable().getClassName();
-        mapdiv.appendChild(s);
-
-        s = document.createElement('span');
-        s.style.backgroundImage = 'url(images/poi.png)';
         s.id = 'dungeon' + k;
         s.onmouseover = new Function('highlightDungeon('+k+')');
         s.onmouseout = new Function('unhighlightDungeon('+k+')');
-        s.style.left = dungeons[k].x;
-        s.style.top = dungeons[k].y;
+        div.style.left = dungeons[k].x;
+        div.style.top = dungeons[k].y;
         s.className = "mapspan dungeon " + dungeons[k].canGetChest().getClassName();
-        mapdiv.appendChild(s);
+        div.appendChild(s);
+
+        const bossSpan = document.createElement('span');
+        bossSpan.style.backgroundImage = 'url(images/' + dungeons[k].image + ')';
+        bossSpan.id = 'bossMap' + k;
+        bossSpan.className = "boss " + dungeons[k].isBeatable().getClassName();
+        s.appendChild(bossSpan);
+
+        mapdiv.appendChild(div);
     }
 }
 
@@ -521,32 +519,7 @@ function populateItemconfig() {
     }		
 }
 
-function enterPasscode() {
-    
-}
-
-function createRoom() {
-    var editors = {};
-    var passcode = document.getElementById('passcodeInput').value;
-}
-
-function resetFirebase() {
-    trackerData.items = itemsInit;
-    trackerData.dungeonchests = dungeonchestsInit;
-    trackerData.dungeonbeaten = dungeonbeatenInit;
-    trackerData.prizes = prizesInit;
-    trackerData.medallions = medallionsInit;
-    trackerData.chestsopened = chestsopenedInit;
-    updateAll();
-}
-
-function useTourneyConfig() {
-
-}
-
-
 function initTracker() {
-    //createItemTracker(document.getElementById('itemdiv'));
     populateMapdiv();
     populateItemconfig();
 
@@ -558,13 +531,6 @@ function updateAll() {
     if(trackerData.items && trackerData.dungeonchests && trackerData.dungeonbeaten && trackerData.prizes && trackerData.medallions && trackerData.chestsopened) {
       vm.displayVueMap = true;
       refreshMap();
-    }
-}
-
-function confirmSaveConfigToFirebase() {
-    var confirm = window.confirm("Do you want to push your configuration to all other users of your tracker? This will overwrite their settings. (Use this to get a remote browser to match how this browser appears.)");
-    if(confirm) {
-        saveConfigToFirebase();
     }
 }
 
