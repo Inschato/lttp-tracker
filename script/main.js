@@ -1,4 +1,4 @@
-const CONFIG_KEY = "lttp_tracker_config";
+const CONFIG_KEY = "hyph"; // Can't change this for backwards compatibility
 
 var trackerOptions = {
   showchests: true,

@@ -110,7 +110,7 @@
         <script type="text/x-template" id="tracker-cell">
             <div class="item-cell" :style="{ backgroundImage: backgroundImage }"
              :class="isActive ? 'true' : 'false'" @click.stop="clickCellForward" @contextmenu.prevent.stop="clickCellBack">
-                <span v-if="dungeonLabel" class="corner" :style="{ display: 'block', position: 'absolute'}">{{ dungeonLabel }}</span>
+                <span v-if="dungeonLabel" class="corner item-dungeon" :style="{ display: 'block', position: 'absolute'}">{{ dungeonLabel }}</span>
                 <span v-if="textCounter !== null" class="textCounter">{{ textCounter }}</span>
                 <span v-if="chestImage" @click.stop="clickChestBack" @contextmenu.prevent.stop="clickChestForward" class="item-chest" :style="{ backgroundImage: chestImage }"></span>
                 <span v-if="prizeImage" @click.stop="clickPrizeForward" @contextmenu.prevent.stop="clickPrizeBack" class="item-prize" :style="{ backgroundImage: prizeImage }"></span>

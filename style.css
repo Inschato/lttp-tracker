@@ -110,15 +110,15 @@ label {
 }
 
 .textCounter {
-    right: 0;
-    bottom: 0;
     font: calc(40px * var(--itemScale)) 'VT323', monospace;
     cursor: default;
     color: #fdd549;
     user-select: none;
-    text-align: center;
     text-shadow: calc(-2px * var(--itemScale)) calc(-2px * var(--itemScale)) calc(1px * var(--itemScale)) black;
-    margin-bottom: calc(10px * var(--itemScale));    
+    grid-row: span 2;
+    grid-column: span 2;
+    align-self: end;
+    justify-self: end;
 }
 
 .true{
@@ -262,27 +262,32 @@ label {
     background-size: cover;
     height: calc(var(--itemHalfSize) * 2);
     width: var(--itemSize);
-    display: inline-block;
     position: relative;
+
+    display: grid;
+    grid-template-areas:
+        "dungeon medallion"
+        "chest prize";
+    grid-template-columns: var(--itemHalfSize) var(--itemHalfSize);
+    grid-template-rows: var(--itemHalfSize) var(--itemHalfSize);
 }
 
 .item-cell > span {
-    display: block;
-    position: absolute;
-    height: var(--itemHalfSize);
-    width: var(--itemHalfSize);
     background-size: cover;
 }
 
+.item-dungeon {
+    grid-area: dungeon;
+}
+
 .item-chest {
-    top: var(--itemHalfSize);
+    grid-area: chest;
 }
 
 .item-prize {
-    top: var(--itemHalfSize);
-    left: var(--itemHalfSize);
+    grid-area: prize;
 }
 
 .item-medallion {
-    left: var(--itemHalfSize);
+    grid-area: medallion;
 }
